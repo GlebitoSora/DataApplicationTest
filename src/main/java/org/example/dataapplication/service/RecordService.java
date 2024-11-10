@@ -1,8 +1,8 @@
-package org.example.dataapplication;
+package org.example.dataapplication.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.example.dataapplication.entity.Record;
+import org.example.dataapplication.repository.RecordRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -21,7 +21,7 @@ public class RecordService {
      * @param record - объект Record для добавления
      * @return добавленный объект Record
      */
-    public Record addRecord(Record record) {
+    public org.example.dataapplication.entity.Record addRecord(org.example.dataapplication.entity.Record record) {
         return recordRepository.save(record);
     }
 
@@ -31,7 +31,7 @@ public class RecordService {
      * @param id - идентификатор записи
      * @return Optional<Record> объект записи
      */
-    public Optional<Record> getRecordById(Long id) {
+    public Optional<org.example.dataapplication.entity.Record> getRecordById(Long id) {
         return recordRepository.findById(id);
     }
 
@@ -42,8 +42,8 @@ public class RecordService {
      * @param updatedRecord - объект Records с новыми данными
      * @return true, если запись была обновлена, иначе false
      */
-    public boolean updateRecord(Long id, Record updatedRecord) {
-        Optional<Record> existingRecordOpt = recordRepository.findById(id);
+    public boolean updateRecord(Long id, org.example.dataapplication.entity.Record updatedRecord) {
+        Optional<org.example.dataapplication.entity.Record> existingRecordOpt = recordRepository.findById(id);
         if (existingRecordOpt.isPresent()) {
             Record existingRecord = existingRecordOpt.get();
             existingRecord.setName(updatedRecord.getName());

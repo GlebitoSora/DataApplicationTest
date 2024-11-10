@@ -1,11 +1,10 @@
-package org.example.dataapplication;
+package org.example.dataapplication.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
+import org.example.dataapplication.service.RecordService;
+import org.example.dataapplication.entity.Record;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 @Slf4j
 @RestController
@@ -25,7 +24,7 @@ public class RecordController {
      * @return созданный объект Record
      */
     @PostMapping
-    public ResponseEntity<Record> createRecord(@RequestBody Record record) {
+    public ResponseEntity<org.example.dataapplication.entity.Record> createRecord(@RequestBody org.example.dataapplication.entity.Record record) {
         log.info("Create record: {}", record);
         return ResponseEntity.ok(recordService.addRecord(record));
     }
