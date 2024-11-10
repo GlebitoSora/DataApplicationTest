@@ -2,16 +2,14 @@ package org.example.dataapplication;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Record {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

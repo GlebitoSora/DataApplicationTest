@@ -36,25 +36,23 @@ public class RecordService {
     }
 
     /**
-     * Обновление имени записи по id
+     * Полное обновление записи по id
      *
-     * @param id   - идентификатор записи
-     * @param name - новое значение имени
+     * @param id            - идентификатор записи
+     * @param updatedRecord - объект Records с новыми данными
+     * @return true, если запись была обновлена, иначе false
      */
-    @Transactional
-    public void updateRecordName(Long id, String name) {
-//        recordRepository.updateByName(id, name);
-    }
-
-    /**
-     * Обновление описания записи по id
-     *
-     * @param id          - идентификатор записи
-     * @param description - новое значение описания
-     */
-    @Transactional
-    public void updateRecordDescription(Long id, String description) {
-//        recordRepository.updateByDescription(id, description);
+    public boolean updateRecord(Long id, Record updatedRecord) {
+        Optional<Record> existingRecordOpt = recordRepository.findById(id);
+        if (existingRecordOpt.isPresent()) {
+            Record existingRecord = existingRecordOpt.get();
+            existingRecord.setName(updatedRecord.getName());
+            existingRecord.setDescription(updatedRecord.getDescription());
+            recordRepository.save(existingRecord);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

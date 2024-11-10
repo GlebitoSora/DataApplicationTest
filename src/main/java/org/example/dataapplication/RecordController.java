@@ -27,8 +27,7 @@ public class RecordController {
     @PostMapping
     public ResponseEntity<Record> createRecord(@RequestBody Record record) {
         log.info("Create record: {}", record);
-        Record createdRecord = recordService.addRecord(record);
-        return new ResponseEntity<>(createdRecord, HttpStatus.CREATED);
+        return ResponseEntity.ok(recordService.addRecord(record));
     }
 
     /**
@@ -38,48 +37,33 @@ public class RecordController {
      * @return объект Record или 404, если запись не найдена
      */
     @GetMapping("/{id}")
-    public ResponseEntity<Record> getRecordById(@PathVariable Long id) {
-        Optional<Record> record = recordService.getRecordById(id);
-        return record.map(ResponseEntity::ok)
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    public ResponseEntity<?> getRecordById(@PathVariable Long id) {
+        log.info("Get record by id: {}", id);
+        return ResponseEntity.ok(recordService.getRecordById(id));
     }
 
-//    /**
-//     * Обновление имени записи по id
-//     *
-//     * @param id - идентификатор записи
-//     * @param name - новое имя записи
-//     * @return статус операции
-//     */
-//    @PatchMapping("/{id}/name")
-//    public ResponseEntity<Void> updateRecordName(@PathVariable Long id, @RequestParam String name) {
-//        recordService.updateRecordName(id, name);
-//        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//    }
-//
-//    /**
-//     * Обновление описания записи по id
-//     *
-//     * @param id - идентификатор записи
-//     * @param description - новое описание записи
-//     * @return статус операции
-//     */
-//    @PatchMapping("/{id}/description")
-//    public ResponseEntity<Void> updateRecordDescription(@PathVariable Long id, @RequestParam String description) {
-//        recordService.updateRecordDescription(id, description);
-//        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//    }
+    /**
+     * Обновление всех данных записи по id
+     *
+     * @param id            - идентификатор записи
+     * @param updatedRecord - объект Records с обновленными данными
+     * @return статус операции
+     */
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateRecord(@PathVariable Long id, @RequestBody Record updatedRecord) {
+        log.info("Update record: {}", updatedRecord);
+        return ResponseEntity.ok(recordService.updateRecord(id, updatedRecord));
+    }
 
     /**
      * Удаление записи по id
      *
      * @param id - идентификатор записи
-     * @return статус операции
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteRecordById(@PathVariable Long id) {
+    public void deleteRecordById(@PathVariable Long id) {
+        log.info("Delete record by id: {}", id);
         recordService.deleteRecordById(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
 
