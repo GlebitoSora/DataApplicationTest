@@ -1,11 +1,13 @@
 package org.example.dataapplication;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/records")
 public class RecordController {
@@ -24,6 +26,7 @@ public class RecordController {
      */
     @PostMapping
     public ResponseEntity<Record> createRecord(@RequestBody Record record) {
+        log.info("Create record: {}", record);
         Record createdRecord = recordService.addRecord(record);
         return new ResponseEntity<>(createdRecord, HttpStatus.CREATED);
     }
@@ -41,31 +44,31 @@ public class RecordController {
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    /**
-     * Обновление имени записи по id
-     *
-     * @param id - идентификатор записи
-     * @param name - новое имя записи
-     * @return статус операции
-     */
-    @PatchMapping("/{id}/name")
-    public ResponseEntity<Void> updateRecordName(@PathVariable Long id, @RequestParam String name) {
-        recordService.updateRecordName(id, name);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
-
-    /**
-     * Обновление описания записи по id
-     *
-     * @param id - идентификатор записи
-     * @param description - новое описание записи
-     * @return статус операции
-     */
-    @PatchMapping("/{id}/description")
-    public ResponseEntity<Void> updateRecordDescription(@PathVariable Long id, @RequestParam String description) {
-        recordService.updateRecordDescription(id, description);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
+//    /**
+//     * Обновление имени записи по id
+//     *
+//     * @param id - идентификатор записи
+//     * @param name - новое имя записи
+//     * @return статус операции
+//     */
+//    @PatchMapping("/{id}/name")
+//    public ResponseEntity<Void> updateRecordName(@PathVariable Long id, @RequestParam String name) {
+//        recordService.updateRecordName(id, name);
+//        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//    }
+//
+//    /**
+//     * Обновление описания записи по id
+//     *
+//     * @param id - идентификатор записи
+//     * @param description - новое описание записи
+//     * @return статус операции
+//     */
+//    @PatchMapping("/{id}/description")
+//    public ResponseEntity<Void> updateRecordDescription(@PathVariable Long id, @RequestParam String description) {
+//        recordService.updateRecordDescription(id, description);
+//        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//    }
 
     /**
      * Удаление записи по id

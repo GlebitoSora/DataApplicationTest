@@ -43,7 +43,7 @@ public class RecordService {
      */
     @Transactional
     public void updateRecordName(Long id, String name) {
-        recordRepository.updateByName(id, name);
+//        recordRepository.updateByName(id, name);
     }
 
     /**
@@ -54,7 +54,7 @@ public class RecordService {
      */
     @Transactional
     public void updateRecordDescription(Long id, String description) {
-        recordRepository.updateByDescription(id, description);
+//        recordRepository.updateByDescription(id, description);
     }
 
     /**
