@@ -15,10 +15,10 @@
 
 
 ### __*График времени работы запросов:*__
-![Image alt](https://github.com/GlebitoSora/DataApplicationTest/raw/main/DataLoadTests/insert100kRecordsOfDataLoadTest/GET.10kperUser.png)
+![Image alt](https://github.com/GlebitoSora/DataApplicationTest/raw/main/DataLoadTests/get10kPerUserFor100UsersDataLoadTest/GET.10kperUser.png)
 
 ### __*Основные данные по запросам, включая медианное, количество ошибок, максимальное время запроса, минимальное время запроса и 90-й,95-й,99-й процентиль:*__
-![Image alt](https://github.com/GlebitoSora/DataApplicationTest/raw/main/DataLoadTests/insert100kRecordsOfDataLoadTest/aggregateReportforAllGet.png)
+![Image alt](https://github.com/GlebitoSora/DataApplicationTest/raw/main/DataLoadTests/get10kPerUserFor100UsersDataLoadTest/aggregateReportforAllGet.png)
 
 
 
